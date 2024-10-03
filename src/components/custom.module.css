@@ -1,0 +1,38 @@
+.serachbarheader {
+  position: relative;
+}
+
+.serachbarheader li {
+  list-style: none;
+}
+
+.serachbarheader .serachcion {
+  position: absolute;
+  top: 10px;
+  left: 19px;
+}
+.serachbarheader input[type="search"] {
+  padding: 9px 10px 9px 37px;
+  cursor: pointer;
+  width: 131px;
+  background-color: #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  border: 0;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.serachbarheader input[type="search"]:focus {
+  width: 240px;
+  /* background-color: #d9d9d9; */
+  background-color: #fff;
+  border-color: #fff;
+  border-bottom: 1px solid #d9d9d9;
+}
+.serachbarheader input {
+  outline: none;
+}
+
+.form_control {
+  background-color: #d9d9d9;
+}
