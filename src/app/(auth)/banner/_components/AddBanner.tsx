@@ -167,21 +167,15 @@ export const AddBanner = ({ open, setOpen, id: bannerId, setId }: any) => {
                           readOnly: true,
                         }}
                       />
-                      {/* {el?.image && !el.image.startsWith("data:") && ( */}
-                      <img
-                        src={el?.image && el.image.startsWith("data:") ? el?.image : generateFilePath(el.image)}
-                        alt="banner_img"
-                        width={400}
-                        height={200}
-                        style={{ marginTop: 5 }}
-                      />
-                      {/* )} */}
-                      {/* {el?.image && el.image.startsWith("data:") && (
+                      {el?.image && (
                         <img
-                          src={el.image ? URL.createObjectURL(el.image) : ""}
-                          style={{ height: 200, width: 400, marginTop: 5 }}
+                          src={el?.image && el.image.startsWith("data:") ? el?.image : generateFilePath(el.image)}
+                          alt="banner_img"
+                          width={400}
+                          height={200}
+                          style={{ marginTop: 5 }}
                         />
-                      )} */}
+                      )}
                     </Grid>
                   </Grid>
                 </Grid>

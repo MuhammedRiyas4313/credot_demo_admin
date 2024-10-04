@@ -10,8 +10,6 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import RoomServiceIcon from "@mui/icons-material/RoomService";
-import HomeIcon from "@mui/icons-material/Home";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
@@ -21,21 +19,14 @@ import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import PublicIcon from "@mui/icons-material/Public";
-import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import SportsHandballIcon from "@mui/icons-material/SportsHandball";
-import PeopleIcon from "@mui/icons-material/People";
-import CollectionsIcon from "@mui/icons-material/Collections";
-import HelpIcon from "@mui/icons-material/Help";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-import DescriptionIcon from "@mui/icons-material/Gavel";
-import ArticleIcon from "@mui/icons-material/Article";
-import GroupIcon from "@mui/icons-material/Group";
-import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ImageIcon from "@mui/icons-material/Image";
+import InventoryIcon from "@mui/icons-material/Inventory";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import CategoryIcon from "@mui/icons-material/Category";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
-import ExploreIcon from "@mui/icons-material/Explore";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "@/hooks/useNavigate";
 import { usePathname } from "next/navigation";
 import { MouseEvent, useState } from "react";
@@ -125,49 +116,49 @@ export default function Container({ children }: any) {
   const [list, setList] = useState([
     {
       title: "Home",
-      icon: <HomeIcon />,
+      icon: <DashboardIcon />, // Changed from HomeIcon
       children: [
         {
           title: "Banner",
-          icon: <CollectionsIcon />,
+          icon: <ImageIcon />, // Changed from CollectionsIcon
           url: "/banner",
-          children: [],
-        },
-        {
-          title: "Brands",
-          icon: <GroupIcon />,
-          url: "/brand",
           children: [],
         },
       ],
     },
     {
       title: "Inventory",
-      icon: <CardGiftcardIcon />,
+      icon: <InventoryIcon />, // Changed from CardGiftcardIcon
       children: [
         {
+          title: "Product",
+          icon: <ShoppingCartIcon />, // Changed from CardGiftcardIcon
+          url: "/product",
+          children: [],
+        },
+        {
           title: "Category",
-          icon: <PublicIcon />,
+          icon: <CategoryIcon />, // Changed from PublicIcon
           url: "/category",
           children: [],
         },
         {
-          title: "Product",
-          icon: <CardGiftcardIcon />,
-          url: "/product",
+          title: "Brands",
+          icon: <LocalOfferIcon />, // Changed from GroupIcon
+          url: "/brand",
           children: [],
         },
       ],
     },
     {
       title: "Orders",
-      icon: <PeopleIcon />,
-      url: "/user",
+      icon: <ShoppingBagIcon />, // Changed from PeopleIcon
+      url: "/order",
       children: [],
     },
     {
       title: "Users",
-      icon: <PeopleIcon />,
+      icon: <PersonIcon />, // Changed from PeopleIcon
       url: "/user",
       children: [],
     },

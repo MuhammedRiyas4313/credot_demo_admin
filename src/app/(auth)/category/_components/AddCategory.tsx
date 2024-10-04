@@ -3,41 +3,36 @@ import { Button, Container, DialogActions, Grid, InputLabel, TextField } from "@
 import { useForm } from "react-hook-form";
 import { useCallback, useEffect, useState } from "react";
 import { toastError, toastSuccess } from "@/utils/toast";
-import { useAddBanner, useUpdateBanner } from "@/services/banner.service";
 import { generateFilePath } from "@/services/url.service";
-import { useAddBrand, useBrandById, useUpdateBrand } from "@/services/brand.service";
+import { useAddCategory, useCategoryById, useUpdateCategory } from "@/services/category.service";
 import { ERROR } from "@/common/error.common";
 
 /* 
   { 
     name: string;
-    logo: string;
-    priority: any; //for sort to show in a specific order for user not a required field either null or number
-    isDeleted: boolean;
+    thumbnail: string;
   }
 */
 
-export const AddBrand = ({ open, setOpen, id: brandId, setId }: any) => {
+export const AddCategory = ({ open, setOpen, id: categoryId, setId }: any) => {
   //IMPORTS
   const { handleSubmit, reset } = useForm();
 
   //STATES
-  const [logo, setLogo] = useState<any>("");
   const [name, setName] = useState("");
-  const [priority, setPriority] = useState();
+  const [thumbnail, setThumbnail] = useState<any>("");
 
   //DATA
-  const { data: brand } = useBrandById(brandId, !!brandId);
+  const { data: category } = useCategoryById(categoryId, !!categoryId);
 
   //USEEFFECT
   useEffect(() => {
-    if (brand) {
-      const { name, logo, priority } = brand;
-      setPriority(priority);
+    if (category) {
+      const { name, thumbnail } = category;
+      setThumbnail(thumbnail);
       setName(name);
-      setLogo(logo);
     }
-  }, [brand]);
+  }, [category]);
 
   //HANDLE CHANGERS
   const setFileToBase = useCallback((file: any) => {
@@ -51,32 +46,31 @@ export const AddBrand = ({ open, setOpen, id: brandId, setId }: any) => {
     });
   }, []);
   const imageOnChange = useCallback(async (file: any) => {
-    let logo: any = await setFileToBase(file);
-    setLogo(logo);
+    let thumbnail: any = await setFileToBase(file);
+    setThumbnail(thumbnail);
   }, []);
 
   //MUTANTS
-  const { mutateAsync: addBrand } = useAddBrand();
-  const { mutateAsync: updateBrand } = useUpdateBrand();
+  const { mutateAsync: addCategory } = useAddCategory();
+  const { mutateAsync: updateCategory } = useUpdateCategory();
 
   //HANDLE ONSUBMIT
   const handleOnSubmit = async (data: any) => {
     try {
       if (!name) throw new Error(ERROR.REQUIRED_FIELD("Name"));
-      if (!logo) throw new Error(ERROR.REQUIRED_FIELD("Logo"));
+      if (!thumbnail) throw new Error(ERROR.REQUIRED_FIELD("Thumbnail"));
 
       const newObj = {
-        logo,
+        thumbnail,
         name,
-        priority,
       };
 
       let res: any = {};
 
-      if (brandId) {
-        res = await updateBrand({ brandId, ...newObj });
+      if (categoryId) {
+        res = await updateCategory({ categoryId, ...newObj });
       } else {
-        res = await addBrand(newObj);
+        res = await addCategory(newObj);
       }
 
       if (res.data?.message) {
@@ -94,9 +88,20 @@ export const AddBrand = ({ open, setOpen, id: brandId, setId }: any) => {
     <Container sx={{ p: 1 }}>
       <form onSubmit={handleSubmit(handleOnSubmit)}>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={12}>
+          <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <TextField
+              size="small"
+              onChange={(e: any) => setName(e.target.value)}
+              value={name}
+              type="text"
+              fullWidth
+              label="Name"
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={12}>
             <Grid container spacing={2} sx={{ flexDirection: "column" }}>
-              <Grid item xs={12}>
+              <Grid item xs={12} md={6}>
                 <InputLabel id="file-upload">Image</InputLabel>
                 <TextField
                   variant="outlined"
@@ -108,40 +113,17 @@ export const AddBrand = ({ open, setOpen, id: brandId, setId }: any) => {
                     readOnly: true,
                   }}
                 />
-                {logo && (
+                {thumbnail && (
                   <img
-                    src={logo.startsWith("data:") ? logo : generateFilePath(logo)}
-                    alt="brand_logo"
+                    src={thumbnail.startsWith("data:") ? thumbnail : generateFilePath(thumbnail)}
+                    alt="thumbnail"
                     width={200}
                     height={200}
                     style={{ marginTop: 5 }}
                   />
                 )}
-                ,
               </Grid>
             </Grid>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              size="small"
-              onChange={(e: any) => setName(e.target.value)}
-              value={name}
-              type="text"
-              fullWidth
-              label="Name"
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              size="small"
-              onChange={(e: any) => setPriority(e.target.value)}
-              value={priority}
-              type="number"
-              fullWidth
-              label="Priority"
-              variant="outlined"
-            />
           </Grid>
         </Grid>
         <DialogActions sx={{ mt: 4 }}>

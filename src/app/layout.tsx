@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import RootProvider from "@/providers/providers";
-import { Inter } from "next/font/google";
+import { Roboto_Mono } from "next/font/google";
 
-const main = Inter({
+const main = Roboto_Mono({
   subsets: ["latin"],
   // display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
