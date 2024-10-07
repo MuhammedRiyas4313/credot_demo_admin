@@ -45,7 +45,7 @@ export default function ViewProduct({ setId, setOpen }: any) {
           row.thumbnail ? (
             <img src={generateFilePath(row?.thumbnail)} alt="thumbnail" width={100} height={60} />
           ) : (
-            <img src={generateFilePath(row?.variants[0].image)} alt="thumbnail" width={100} height={60} />
+            <img src={generateFilePath(row?.variants[0].imagesArr[0].image)} alt="thumbnail" width={100} height={60} />
           ),
         id: "thumbnail",
       },

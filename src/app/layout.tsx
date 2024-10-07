@@ -17,6 +17,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children, session }: any) {
   return (
     <html lang="en">
+      <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={main.className}>
         <RootProvider session={session}>{children}</RootProvider>
       </body>

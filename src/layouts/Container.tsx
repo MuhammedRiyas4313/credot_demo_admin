@@ -266,13 +266,7 @@ export default function Container({ children }: any) {
               overflow: "hidden",
             }}
           >
-            <Image
-              src={mainlogo}
-              alt="mainlogo"
-              width={165}
-              height={45}
-              style={{ objectFit: "contain", backgroundColor: "#6d3481" }}
-            />
+            <Image src={mainlogo} alt="mainlogo" width={165} height={45} style={{ objectFit: "contain" }} />
           </Box>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (

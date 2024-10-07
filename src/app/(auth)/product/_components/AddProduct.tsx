@@ -56,7 +56,8 @@ import RemoveIcon from "@mui/icons-material/Delete";
       
     
     //THESE ARE REQUIRED FIELDS IF THE VARIANT LENGTH > 0!
-      title: string; // iPhone 12 Pro max 256GB Deep Purple
+      name: string; //iPhone 12 Pro max 256GB Deep Purple
+      title: string; // COLORS like red, silver, blue
       image: string;
       imagesArr: { image: string }[]; //to show multiple images of a variant.
       createdAt: Date;
@@ -220,6 +221,7 @@ export const AddProduct = ({ open, setOpen, id: productId, setId }: any) => {
     setVariants([
       ...variants,
       {
+        name: "",
         title: "",
         image: "",
         price: 0,
@@ -365,7 +367,8 @@ export const AddProduct = ({ open, setOpen, id: productId, setId }: any) => {
       } else {
         for (const variant of variants) {
           //THESE ARE REQUIRED FIELDS IF THE VARIANT LENGTH > 0!
-          if (!variant?.title) throw new Error(ERROR.REQUIRED_FIELD("Variant Title"));
+          if (!variant?.name) throw new Error(ERROR.REQUIRED_FIELD("Variant Name")); //iPhone 12 Pro max 256GB Deep Purple
+          if (!variant?.title) throw new Error(ERROR.REQUIRED_FIELD("Variant Title")); //COLORS like red, silver, blue
           if (!variant?.image) throw new Error(ERROR.REQUIRED_FIELD("Variant Thumbnail"));
           if (
             variant?.imagesArr?.some(
@@ -690,6 +693,17 @@ export const AddProduct = ({ open, setOpen, id: productId, setId }: any) => {
                 <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                   <TextField
                     size="small"
+                    onChange={(e: any) => handleOnChangeVariantInputs(e.target.value, "name", variantIndex)}
+                    value={variant.name}
+                    type="text"
+                    fullWidth
+                    label="Variant Name"
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                  <TextField
+                    size="small"
                     onChange={(e: any) => handleOnChangeVariantInputs(e.target.value, "title", variantIndex)}
                     value={variant.title}
                     type="text"
@@ -781,9 +795,9 @@ export const AddProduct = ({ open, setOpen, id: productId, setId }: any) => {
                         <img
                           src={variant.image.startsWith("data:") ? variant.image : generateFilePath(variant.image)}
                           alt="thumbnail"
-                          width={200}
-                          height={250}
-                          style={{ marginTop: 5 }}
+                          width={100}
+                          height={100}
+                          style={{ marginTop: 5, borderRadius: "50%" }}
                         />
                       )}
                     </Grid>
