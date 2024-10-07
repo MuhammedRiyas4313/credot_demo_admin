@@ -10,7 +10,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "api.explore.ebslonserver3.com",
+        hostname: "credot-demo-backend.onrender.com",
         pathname: "/uploads/**",
       },
     ],
