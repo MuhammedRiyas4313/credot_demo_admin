@@ -31,6 +31,7 @@ export const UpdateStatus = ({ open, setOpen, id: orderId, setId }: any) => {
       } else if (status === ORDER_STATUS.RETURNED_INITIATED) {
         statusArr.push(ORDER_STATUS.RETURNED_DELIVERED);
       }
+      console.log(statusArr, "STATUS ARR");
       setStatusArr(statusArr);
     }
   }, [order]);
@@ -74,9 +75,8 @@ export const UpdateStatus = ({ open, setOpen, id: orderId, setId }: any) => {
               <Select
                 labelId="demo-simple-select-label1"
                 id="demo-simple-select1"
-                label="Brand"
+                label="Order Status"
                 size="small"
-                value={status}
                 onChange={(e: any) => setStatus(e.target.value)}
               >
                 {Object.values(ORDER_STATUS) && Object.values(ORDER_STATUS)?.length > 0 ? (
