@@ -1,4 +1,5 @@
 import axios from "axios";
+import axiosAuth from "./axios.service";
 import url, { GeneralApiResponse, GeneralApiResponsePagination } from "./url.service";
 import { PaginationState } from "@tanstack/react-table";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -15,7 +16,7 @@ const getUser = (pagination: PaginationState, searchObj: Record<string, any>) =>
     pageSize: String(pagination.pageSize),
     ...searchObj,
   }).toString();
-  return axios.get<GeneralApiResponsePagination<any>>(`${baseUrl}?${query}`);
+  return axiosAuth.get<GeneralApiResponsePagination<any>>(`${baseUrl}?${query}`);
 };
 
 export const useUser = (
@@ -32,7 +33,7 @@ export const useUser = (
 };
 
 const getUserById = (userId: string) => {
-  return axios.get<GeneralApiResponse<any>>(`${baseUrl}/${userId}`);
+  return axiosAuth.get<GeneralApiResponse<any>>(`${baseUrl}/${userId}`);
 };
 
 export const useUserById = (userId: any, enabled = true) => {
@@ -44,7 +45,7 @@ export const useUserById = (userId: any, enabled = true) => {
 };
 
 const updateUserStatus = ({ userId, ...user }: any) => {
-  return axios.patch(`${baseUrl}/${userId}`, user);
+  return axiosAuth.patch(`${baseUrl}/${userId}`, user);
 };
 
 export const useUpdateUserStatus = () => {
