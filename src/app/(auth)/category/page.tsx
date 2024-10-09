@@ -28,7 +28,13 @@ const Page = () => {
           <ViewCategory setId={setId} setOpen={setOpen} />
         </Grid>
       </Container>
-      <CustomDialog title={`${id ? "update" : "Add new"} Category`} open={open} setOpen={setOpen} setId={setId}>
+      <CustomDialog
+        fullWidth={false}
+        title={`${id ? "update" : "Add new"} Category`}
+        open={open}
+        setOpen={setOpen}
+        setId={setId}
+      >
         <AddCategory id={id} setId={setId} open={open} setOpen={setOpen} />
       </CustomDialog>
     </div>

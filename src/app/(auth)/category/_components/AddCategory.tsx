@@ -87,8 +87,9 @@ export const AddCategory = ({ open, setOpen, id: categoryId, setId }: any) => {
   return (
     <Container sx={{ p: 1 }}>
       <form onSubmit={handleSubmit(handleOnSubmit)}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        {/* <Grid container spacing={2}> */}
+        <Grid container spacing={2} sx={{ flexDirection: "column" }}>
+          <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
             <TextField
               size="small"
               onChange={(e: any) => setName(e.target.value)}
@@ -100,31 +101,30 @@ export const AddCategory = ({ open, setOpen, id: categoryId, setId }: any) => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Grid container spacing={2} sx={{ flexDirection: "column" }}>
-              <Grid item xs={12} md={6}>
-                <InputLabel id="file-upload">Image</InputLabel>
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  size="small"
-                  onChange={(e: any) => imageOnChange(e.target.files[0])}
-                  type="file"
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                {thumbnail && (
-                  <img
-                    src={thumbnail.startsWith("data:") ? thumbnail : generateFilePath(thumbnail)}
-                    alt="thumbnail"
-                    width={200}
-                    height={200}
-                    style={{ marginTop: 5 }}
-                  />
-                )}
-              </Grid>
-            </Grid>
+            {/* <Grid item xs={12} md={6}> */}
+            <InputLabel id="file-upload">Image</InputLabel>
+            <TextField
+              variant="outlined"
+              fullWidth
+              size="small"
+              onChange={(e: any) => imageOnChange(e.target.files[0])}
+              type="file"
+              InputProps={{
+                readOnly: true,
+              }}
+            />
+            {thumbnail && (
+              <img
+                src={thumbnail.startsWith("data:") ? thumbnail : generateFilePath(thumbnail)}
+                alt="thumbnail"
+                width={200}
+                height={200}
+                style={{ marginTop: 5 }}
+              />
+            )}
           </Grid>
+          {/* </Grid> */}
+          {/* </Grid> */}
         </Grid>
         <DialogActions sx={{ mt: 4 }}>
           <Button

@@ -10,12 +10,14 @@ export default function CustomDialog({
   setOpen,
   setId,
   title,
+  fullWidth = true,
 }: {
   children: any;
   open: any;
   setOpen: any;
   setId: any;
   title: string;
+  fullWidth?: boolean;
 }) {
   const handleClose = (e: any, reason: any) => {
     if (reason === "backdropClick") return;
@@ -26,7 +28,7 @@ export default function CustomDialog({
   };
 
   return (
-    <Dialog fullWidth={true} maxWidth={"md"} open={open} onClose={handleClose}>
+    <Dialog fullWidth={fullWidth} maxWidth={"md"} open={open} onClose={handleClose}>
       <DialogTitle
         sx={{ bgcolor: "#6d3481", color: "#fff", mb: 2, p: 1, px: 4, display: "flex", justifyContent: "space-between" }}
       >
@@ -41,7 +43,7 @@ export default function CustomDialog({
           X
         </Box>
       </DialogTitle>
-      <DialogContent>{children}</DialogContent>
+      <DialogContent style={{ maxWidth: "none" }}>{children}</DialogContent>
     </Dialog>
   );
 }
